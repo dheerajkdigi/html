@@ -1,0 +1,781 @@
+-- MySQL dump 10.13  Distrib 5.6.45, for Linux (x86_64)
+--
+-- Host: localhost    Database: erp
+-- ------------------------------------------------------
+-- Server version	5.6.45
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `UNIT` varchar(10) NOT NULL,
+  `POSITION` int(2) NOT NULL,
+  `CAPTION` varchar(100) NOT NULL,
+  `DESCRIPTION` text NOT NULL,
+  `CATEGORY_IMAGE` varchar(1000) DEFAULT NULL,
+  `CREATED_ON` datetime NOT NULL,
+  `MODYFIED_ON` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) NOT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `IS_ACTIVE` (`IS_ACTIVE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (6,'Resistance Wire','KG.',0,'','',NULL,'2019-04-07 13:35:44','2019-04-07 11:49:01','admin','admin',1),(7,'Soft Tube','Box',0,'','',NULL,'2019-04-07 13:40:38','2019-04-07 11:40:38','admin',NULL,1),(8,'Nylon Bush','PKT',0,'','',NULL,'2019-04-07 13:43:13','2019-04-07 11:43:13','admin',NULL,1),(9,'Sealing Bead','Nos',0,'','',NULL,'2019-04-07 13:44:02','2019-04-07 11:44:02','admin',NULL,1),(10,'Welding Rod','KG.',0,'','',NULL,'2019-04-07 13:44:16','2019-04-07 11:44:16','admin',NULL,1);
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(20) NOT NULL,
+  `CATEGORY` varchar(20) DEFAULT NULL,
+  `CODE` varchar(20) NOT NULL,
+  `OPENING_AMOUNT` decimal(10,0) NOT NULL,
+  `CONTACT_PERSON` varchar(100) NOT NULL,
+  `MOBILE` varchar(20) NOT NULL,
+  `EMAIL_ID` varchar(50) NOT NULL,
+  `ADDRESS_1` varchar(200) NOT NULL,
+  `ADDRESS_2` varchar(200) NOT NULL,
+  `CITY` varchar(20) NOT NULL,
+  `STATE` varchar(20) NOT NULL,
+  `COUNTRY` varchar(20) NOT NULL,
+  `PIN_CODE` int(6) NOT NULL,
+  `WEBSITE` varchar(50) NOT NULL,
+  `PHONE` varchar(20) NOT NULL,
+  `FAX` varchar(50) NOT NULL,
+  `PAN` varchar(20) NOT NULL,
+  `COMMODITY` varchar(20) NOT NULL,
+  `ECC` varchar(20) NOT NULL,
+  `GSTIN` varchar(20) NOT NULL,
+  `CST` varchar(20) NOT NULL,
+  `CST_DATE` date NOT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
+  ` MODYFIED_ON` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `PACK_ID` (`CATEGORY`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (2,'customer1','CREDITOR','fgv',10,'awanish','999999999','awanish_bhu88@yahoo.co.in','132','cdfvrvbr','dcdsvv','cdsvb','India',201301,'','','','123124','','','','','0000-00-00','2019-07-04 14:12:29','2019-07-04 18:20:02','admin','admin',1),(3,'ABC Ltd.','CREDITOR','1478',0,'abhi','89782323889','rahul@gmail.com','pritampura','new delhi','delhi','delhi','India',100098,'','011-4557823727','','AKOFSFEF343','','','AKO98qqwcj','','0000-00-00','2019-07-05 14:13:50','2019-07-05 12:13:50','admin',NULL,1),(4,'Millennium House',NULL,'',0,'Brijesh Sharma','9891023817','millenniumhouse08@gmail.com','1679, Dakhni Rai Street, Daryaganj, ','New Delhi 110002.','New Delhi','Delhi','India',110002,'www.mhouse.com','','','AARPS0279G','','','07AARPS0279G1Z9','','0000-00-00','2019-08-28 12:26:14','2019-08-28 06:56:58','purchase','purchase',1),(5,'Daspass Sales Corpor',NULL,'',0,'KG Sharma','9810038626','daspass@hotmail.com','Plot no A-4, Street no -4, Anand Parbat Industiral','Area, New Delhi - 110005','New Delhi','Delhi','India',110005,'www.daspass.in','','','AAOPS3809F','','','01AAOPS3809F2ZF','','0000-00-00','2019-09-02 11:33:03','2019-09-02 06:03:03','admin',NULL,1),(6,'SK Systems Pvt. Ltd.',NULL,'',0,'Deepak Verma (Sr. Manager)','9582895929','sksystemdelhi@gmail.com','601, V4 Tower, Plot no 14, Karkardooma Comm. Center, Delhi - 92','New Delhi 110092','New Delhi','Delhi','India',110092,'','','','AAACS0021J','','','06AACS0021J1ZW','','0000-00-00','2019-09-12 10:51:35','2019-09-12 05:21:35','admin',NULL,1),(7,'DAR',NULL,'',0,'Amit Chobharkar','2041090000','amit.chobharkar@dar.com','Tower 11, Cybercity, Magarpatta City, ','Hadapsar, Pune - 411013','Maharashtra','Maharashtra','India',411013,'','','','AAOPS3809F','','','07AAOPS3809F2ZF','','0000-00-00','2019-09-12 11:11:53','2019-09-12 05:41:53','admin',NULL,1),(8,'Waves Aircon Pvt. Lt',NULL,'',0,'Ram Kumar Sharma','8890156102','store2@wavesaircon.in','G-1, 797, 795, 794 & 793 & H-42-43, RIICO Industrial Area, ','Road no 20A, Bhiwadi 301019, Alwar Rajasthan','Bhiwadi','Rajasthan','India',301019,'','','','AAACW4634M','','','08AAACW4634M1ZZ','','0000-00-00','2019-09-12 15:41:50','2019-09-12 10:12:03','admin','admin',1),(9,'UHP Technologies Pvt',NULL,'',0,'S. Naveen Kumar (Senior HVAC Design Engineer)','7022274601','naveen.kumar@uhptech.com','#1256, 3rd Floor, KAS Tower, 9th Cross, ','1st Stage, 4th Block, HBR Layout, Bengaluru - 560043.','Bangalore','Karnataka','India',560043,'','','','AAOPS3809F','','','07AAOPS3809F2ZF','','0000-00-00','2019-09-13 11:23:56','2019-09-13 05:53:56','admin',NULL,1),(10,'Ensol',NULL,'',0,'Rushabh Acharya','7227878731','purchase@ensol.co','B1-1201, Westgate Business Bay, Opp. Andaz Party Plot, ','SG Highway, Makarba, Ahmedabad - 380051','Ahmedabad','Gujarat','India',380051,'','','','AAOPS3809F','','','07AAOPS3809F2ZF','','0000-00-00','2019-09-13 11:33:01','2019-09-13 06:03:01','admin',NULL,1),(11,'Vyankatesh Optics',NULL,'',0,'Vijendra Arora','9660853470','v.arora@vyankateshoptics.com','G-642A, Marudhar Industrial Area, Phase II, Basani, ','Jodhpur - 342005, Rajasthan.','Jodhpur','Rajasthan','India',324005,'','','','ADMPK6985D','','','08ADMPK6985D1Z3','','0000-00-00','2019-09-13 12:09:41','2019-09-13 06:39:41','admin',NULL,1),(12,'Sterling & Wilson Pr',NULL,'',0,'S. Gokulakrishnan','9965769918','sgokulakrishnan@sterllingwilson.com','No. 4A/14, 6th Cross, Chikka Adugodi New Extension, ','Thavarekere Main Road, Bangalore - 560029.','Bangalore','Karnataka','India',560029,'','','','AAOPS3809F','','','07AAOPS3809F2ZF','','0000-00-00','2019-09-13 12:26:25','2019-09-13 06:57:18','admin','admin',1),(13,'Fedders Lloyd Electr',NULL,'',0,'Ritesh Bhardwaj','9718998027','ritesh.bhardwaj@fedderselectric.com','Saketi Road, Kala-Amb','Sirmour - 173030, Himachal Pradesh.','Baddi','Himachal Pradesh','India',173030,'','','','AAACF0437B','','','02AAACF0437B1ZM','','0000-00-00','2019-09-14 14:38:52','2019-09-14 09:08:52','admin',NULL,1);
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `industry`
+--
+
+DROP TABLE IF EXISTS `industry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `industry` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `CREATED_ON` datetime NOT NULL,
+  `MODYFIED_ON` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) NOT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `IS_ACTIVE` (`IS_ACTIVE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `industry`
+--
+
+LOCK TABLES `industry` WRITE;
+/*!40000 ALTER TABLE `industry` DISABLE KEYS */;
+/*!40000 ALTER TABLE `industry` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `material`
+--
+
+DROP TABLE IF EXISTS `material`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `material` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MATERIAL_GROUP_ID` int(11) NOT NULL,
+  `MATERIAL_GROUP_NAME` varchar(20) NOT NULL,
+  `MATERIAL_SUB_GROUP_ID` int(11) NOT NULL,
+  `MATERIAL_SUB_GROUP_NAME` varchar(20) NOT NULL,
+  `ITEM_CODE` varchar(20) DEFAULT NULL,
+  `ITEM_NAME` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(200) NOT NULL,
+  `UOM` varchar(20) NOT NULL,
+  `CONV_UOM` varchar(20) DEFAULT NULL,
+  `CONV_FACTOR` float NOT NULL,
+  `SHOW_REPORT` tinyint(1) NOT NULL,
+  `BATCH_TYPE` varchar(20) NOT NULL,
+  `PO_TOLERANCE` float NOT NULL,
+  `RATE_PICK` varchar(20) NOT NULL,
+  `FRONT_IMAGE` varchar(500) NOT NULL,
+  `BACK_IMAGE` varchar(500) NOT NULL,
+  `COST_RATE` float NOT NULL,
+  `MRP_RATE` float NOT NULL,
+  `SALES_RATE` float NOT NULL,
+  `INTEGRATED_TAX` float NOT NULL,
+  `SGST` float NOT NULL,
+  `CGST` float NOT NULL,
+  `MAX_LEVEL` float NOT NULL,
+  `MIN_LEVEL` float NOT NULL,
+  `REORDER_LEVEL` float NOT NULL,
+  `STORE_QUANTITY` float NOT NULL,
+  `ITEM_LOCATION` varchar(100) NOT NULL,
+  `ATTACHED_FILE` varchar(500) NOT NULL,
+  `CREATED_ON` datetime NOT NULL,
+  `MODYFIED_ON` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) NOT NULL,
+  `MODIFIED_BY` varchar(100) NOT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=354 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `material`
+--
+
+LOCK TABLES `material` WRITE;
+/*!40000 ALTER TABLE `material` DISABLE KEYS */;
+INSERT INTO `material` VALUES (3,1,'Raw Material',3,'GI Sheet',NULL,'GI Strip 18 Swg ','GI Strips 33.5','Nos',NULL,0,0,'',0,'','','',0,0,0,0,9,9,0,0,0,50,'First Row Upper Rack','','2019-09-02 12:13:00','2019-09-16 12:12:10','admin','admin',0),(4,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE HEAVY 6','HEAVY 6 HOLES X 1.25','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'A3','','2019-09-03 10:47:05','2019-09-16 12:12:27','store','store',0),(5,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS IG CUP 2 HOLE ','Brass IG Cup 2 Hole','PCS',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,-10,'H2','','2019-09-06 14:04:59','2019-09-14 06:02:32','store','',0),(6,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE 1.5','HEAVY 6 HOLES X 1.5','Nos',NULL,0,0,'',0,'','','',0,0,0,0,9,9,0,0,0,-10,'D5','','2019-09-06 14:05:54','2019-09-16 12:12:27','store','store',0),(7,1,'Raw Material',4,'Brass Flange',NULL,'BRASS KETTLE AUTO Fl','Kettle Auto','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,0,-15,'C6','','2019-09-06 14:08:46','2019-09-14 06:02:32','store','',0),(8,1,'Raw Material',6,'Brass Nipple ',NULL,'BRASS NIPPLE 5/8\" RC','Nipple 5/8\" RC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,2000,500,400,-20,'O2','','2019-09-06 14:34:31','2019-09-14 06:02:32','store','',0),(9,1,'Raw Material',7,'MS Nipple ',NULL,'MS NIPPLE 5/8\" SMALL','Nipple 5/8\" Small','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,1000,500,300,0,'G4','','2019-09-06 14:37:16','2019-09-06 09:07:16','store','',0),(10,1,'Raw Material',6,'Brass Nipple ',NULL,'BRASS NIPPLE 9/16\" 2','Nipple 22mm Long','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,5000,1000,500,0,'O3','','2019-09-06 14:39:12','2019-09-06 09:09:12','store','',0),(11,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP 2 HOLE DAS','Triangular Cup 2 Hole Daspass','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,5000,2000,1500,0,'H15','','2019-09-06 14:40:12','2019-09-06 09:10:12','store','',0),(12,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE 1.25\" /','Flange 1.25\" 2 Hole ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,250,100,50,0,'C 6','','2019-09-06 15:07:03','2019-09-06 09:37:03','store','',0),(13,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE 1.25\"/4','BRASS FLANGE 1.25\"/4 HOLE / HEAVY','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'D11','','2019-09-06 15:07:59','2019-09-06 09:37:59','store','',0),(14,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE 1.25\"/ ','BRASS FLANGE 1.25\"/ 6 HOLE/ LIGHT','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'D18','','2019-09-06 15:08:33','2019-09-06 09:38:33','store','',0),(15,1,'Raw Material',8,'Brass Item',NULL,'BRASS NUT 4 MM','BRASS NUT 4 MM','KG',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'P6','','2019-09-06 15:10:13','2019-09-16 12:12:52','store','store',0),(16,1,'Raw Material',8,'Brass Item',NULL,'BRASS ADOPTER 4 MM','BRASS ADOPTER 4 MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'E9','','2019-09-06 15:10:37','2019-09-06 09:40:37','store','',0),(17,1,'Raw Material',8,'Brass Item',NULL,'BRASS BTH 4 MM Small','BRASS BTH 4 MM Small','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'P3','','2019-09-06 15:11:15','2019-09-06 09:41:15','store','',0),(18,1,'Raw Material',8,'Brass Item',NULL,'BRASS BTH 4 MM (LONG','BRASS BTH 4 MM (LONG)','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,10000,5000,3000,0,'P3','','2019-09-06 15:11:56','2019-09-06 09:41:56','store','',0),(19,1,'Raw Material',8,'Brass Item',NULL,'CHECKNUT 2\"','CHECKNUT 2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,50,25,10,0,'E22','','2019-09-06 15:12:39','2019-09-06 09:42:39','store','',0),(20,1,'Raw Material',8,'Brass Item',NULL,'CHECKNUT 1.25\"','CHECKNUT 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,200,50,50,0,'E24','','2019-09-06 15:13:21','2019-09-06 09:43:21','store','',0),(21,1,'Raw Material',4,'Brass Flange',NULL,'Brass Kettle Non Aut','Brass Kettle Non Auto Flange','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'D13','','2019-09-06 15:13:56','2019-09-06 09:43:56','store','',0),(22,1,'Raw Material',8,'Brass Item',NULL,'BRASS CHEEKNUT 1.5\"','BRASS CHEEKNUT 1.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'E23','','2019-09-06 15:14:46','2019-09-06 09:44:46','store','',0),(23,1,'Raw Material',8,'Brass Item',NULL,'BRASS CUP ALTO 3 HOL','BRASS CUP ALTO 3 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'B20','','2019-09-06 15:21:08','2019-09-06 09:51:08','store','',0),(24,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP ROUND 2 HO','BRASS CUP ROUND 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,500,50,25,0,'E7','','2019-09-06 15:21:46','2019-09-06 09:51:46','store','',0),(25,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP 3 HOLE TRI','BRASS CUP TRIANGULAR 3 HOLES DASPASS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,2000,1000,500,0,'H14','','2019-09-06 15:22:51','2019-09-06 09:52:51','store','',0),(26,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP 4 HOLES RO','BRASS CUP ROUND 4 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'E13','','2019-09-06 15:23:49','2019-09-06 09:53:49','store','',0),(27,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP 2 HOLE TRI','BRASS CUP TRIANGULAR (CLASSIC) 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,1500,500,250,0,'H6','','2019-09-06 15:25:32','2019-09-06 09:55:32','store','',0),(28,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP MINI BAJAJ','BRASS CUP MINI BAJAJ 2 Hole','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,-50,'I 6','','2019-09-06 15:29:50','2019-09-14 06:02:32','store','',0),(29,1,'Raw Material',5,'Brass Cup ',NULL,'BRASS CUP RECOLD TYP','BRASS CUP RECOLD TYPE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'W8','','2019-09-06 15:30:28','2019-09-06 10:00:28','store','',0),(30,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE HEAVY 6','BRASS FLANGE HEAVY 6 HOLES X 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'D9','','2019-09-06 15:31:07','2019-09-06 10:01:07','store','',0),(31,1,'Raw Material',4,'Brass Flange',NULL,'BRASS FLANGE VICO 2 ','BRASS FLANGE VICO 2 HOLES X 1\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'D4','','2019-09-06 15:31:55','2019-09-06 10:01:55','store','',0),(32,1,'Raw Material',6,'Brass Nipple ',NULL,'BRASS NIPPLE HEX 5/8','BRASS NIPPLE HEX 5/8\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'O 1','','2019-09-06 15:32:30','2019-09-06 10:02:30','store','',0),(33,1,'Raw Material',8,'Brass Item',NULL,'BRASS WASHER 4 MM','BRASS WASHER 4 MM','KG',NULL,0,0,'',0,'','','',0,0,0,0,0,0,50,10,5,0,'P5','','2019-09-06 15:33:06','2019-09-06 10:03:06','store','',0),(34,1,'Raw Material',9,'MS CAP',NULL,'MS CAP 1.25\" SMALL','MS CAP 1.25\" SMALL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,100,50,25,0,'F6','','2019-09-06 15:34:33','2019-09-06 10:04:33','store','',0),(35,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 22 SWG','DSD WIRE 22 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,2,2,0,'T4C','','2019-09-06 15:39:16','2019-09-16 12:13:07','store','store',0),(36,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 20 SWG','DSD WIRE 20 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,3,2,0,'T4A','','2019-09-06 15:39:55','2019-09-16 12:13:07','store','store',0),(37,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 21 SWG','DSD WIRE 21 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,3,2,0,'T4B','','2019-09-06 15:40:30','2019-09-16 12:13:07','store','store',0),(38,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 23 SWG','DSD WIRE 23 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,3,2,0,'T4D','','2019-09-06 15:40:57','2019-09-16 12:13:07','store','store',0),(39,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 24 SWG','DSD WIRE 24 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,25,10,5,-1.55,'T4E','','2019-09-06 15:41:37','2019-09-16 12:13:07','store','store',0),(40,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 25 SWG','DSD WIRE 25 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,3,2,0,'T3','','2019-09-06 15:42:08','2019-09-16 12:13:07','store','store',0),(41,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 26 SWG','DSD WIRE 26 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,3,2,0,'T3B','','2019-09-06 15:43:02','2019-09-16 12:13:07','store','store',0),(42,1,'Raw Material',11,'DSD WIRE',NULL,'DSD WIRE 27 SWG','DSD WIRE 27 SWG','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,5,3,2,0,'T3C','','2019-09-06 15:43:32','2019-09-16 12:13:07','store','store',0),(43,1,'Raw Material',3,'GI Sheet',NULL,'G.P SHEET 26 SWG','G.P FINNDS ','KG',NULL,0,0,'',0,'','','',0,0,0,0,9,9,500,100,50,-25,'D19','','2019-09-07 14:20:49','2019-09-14 06:02:32','store','',0),(44,1,'Raw Material',14,'SS Tubes',NULL,'Stainless Steel Tube 304L Size (3/8\")','Stainless Steel Tube 304L Size (3/8\")','Feet',NULL,0,0,'',0,'','','',0,0,0,0,9,9,0,0,0,1000,'Ground Floor','','2019-09-14 14:32:37','2019-09-14 09:02:37','admin','',0),(45,1,'Raw Material',6,'Brass Nipple ',NULL,'Brass Nipple 9/16\" / 22 mm long','Brass Nipple 9/16\" / 22 mm long','Nos',NULL,0,0,'',0,'','','',0,0,0,0,9,9,0,0,0,100,'First Floor Stores','','2019-09-14 14:34:44','2019-09-14 09:13:55','admin','',0),(46,1,'Raw Material',15,'KETTLE MATERIALS',NULL,'BAKELITE TIKKI','BAKELITE TIKKI','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(47,1,'Raw Material',15,'KETTLE MATERIALS',NULL,'BAKELITE CAP 1.25\"','BAKELITE CAP 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(48,1,'Raw Material',15,'KETTLE MATERIALS',NULL,'BYMETAL KETTEL','BYMETAL KETTEL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(49,1,'Raw Material',15,'KETTLE MATERIALS',NULL,'KETTLE NOZAL','KETTLE NOZAL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(50,1,'Raw Material',15,'KETTLE MATERIALS',NULL,'KETTLE BIG PIN','KETTLE BIG PIN','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(51,1,'Raw Material',16,'BRASS ADOPTERS',NULL,'BRASS ADOPTER 4 MM','BRASS ADOPTER 4 MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(52,1,'Raw Material',16,'BRASS ADOPTERS',NULL,'BRASS BTH 4 MM (LONG)','BRASS BTH 4 MM (LONG)','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(53,1,'Raw Material',16,'BRASS ADOPTERS',NULL,'BRASS PIN KETTEL AUTO','BRASS PIN KETTEL AUTO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(54,1,'Raw Material',17,'BRASS CHECKNUTS',NULL,'BRASS CHECKNUT 2\"','BRASS CHECKNUT 2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(55,1,'Raw Material',17,'BRASS CHECKNUTS',NULL,'BRASS CHECKNUT 1.25\"','BRASS CHECKNUT 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(56,1,'Raw Material',17,'BRASS CHECKNUTS',NULL,'CHEEKNUT 1.5\"','CHEEKNUT 1.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(57,1,'Raw Material',18,'BRASS CLAMPS',NULL,'BRASS DTA CLAMPS 2 HOLES','BRASS DTA CLAMPS 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(58,1,'Raw Material',18,'BRASS CLAMPS',NULL,'EARTH STRIP','EARTH STRIP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(59,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP 2 HOLE DASPASS/TRIANGULAR','BRASS CUP 2 HOLE DASPASS/TRIANGULAR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(60,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS IG CUP 2 HOLE ROUND DASPASS','BRASS IG CUP 2 HOLE ROUND DASPASS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(61,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP / 2 HOLE /ROUND/SPHEREHOT','BRASS CUP / 2 HOLE /ROUND/SPHEREHOT','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(62,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP ROUND 2 HOLE SPHEREHOT NEW','BRASS CUP ROUND 2 HOLE SPHEREHOT NEW','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(63,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP ALTO 3 HOLES','BRASS CUP ALTO 3 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:08:05','','',0),(64,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP ROUND 2 HOLES DASPASS','BRASS CUP ROUND 2 HOLES DASPASS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:09:55','','',0),(65,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP TRIANGULAR 2 HOLES','BRASS CUP TRIANGULAR 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:11','','',0),(66,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP ROUND 3 HOLES','BRASS CUP ROUND 3 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:11','','',0),(67,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP TRIANGULAR 3 HOLES DASPASS','BRASS CUP TRIANGULAR 3 HOLES DASPASS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:11','','',0),(68,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP TRIANGULAR (CLASSIC) 2 HOLES','BRASS CUP TRIANGULAR (CLASSIC) 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:11','','',0),(69,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS IG CUP 2 HOLES DASPASS','BRASS IG CUP 2 HOLES DASPASS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:11','','',0),(70,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP MINI BAJAJ','BRASS CUP MINI BAJAJ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(71,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP TRIANGULAR MULTI STAR 3 HOLE','BRASS CUP TRIANGULAR MULTI STAR 3 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(72,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP RECOLD TYPE','BRASS CUP RECOLD TYPE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(73,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP ROUND SPEHERHOT 2 HOLE','BRASS CUP ROUND SPEHERHOT 2 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(74,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP 2 HOLE TRIANGULAR ( PERFECT )','BRASS CUP 2 HOLE TRIANGULAR ( PERFECT )','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(75,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP 2 HOLE ROUND ( PREFECT )','BRASS CUP 2 HOLE ROUND ( PREFECT )','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(76,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP TRIANGULAR MULTI STAR 2 HOLE','BRASS CUP TRIANGULAR MULTI STAR 2 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(77,1,'Raw Material',5,'BRASS CUPS',NULL,'BRASS CUP 3 HOLE TRIANGULAR CLASSIC','BRASS CUP 3 HOLE TRIANGULAR CLASSIC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(78,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" / 2 HOLE','BRASS FLANGE 1.25\" / 2 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(79,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\"/4 HOLE / HEAVY','BRASS FLANGE 1.25\"/4 HOLE / HEAVY','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(80,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\"/ 6 HOLE/ LIGHT','BRASS FLANGE 1.25\"/ 6 HOLE/ LIGHT','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(81,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 2\" / 6 HOLES','BRASS FLANGE 2\" / 6 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:10:12','','',0),(82,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\"/3 HOLE','BRASS FLANGE 1.25\"/3 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:16','','',0),(83,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\"/ 2 HOLE/ DCW','BRASS FLANGE 1.25\"/ 2 HOLE/ DCW','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(84,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" HEAVY 6 HOLES ','BRASS FLANGE 1.25\" HEAVY 6 HOLES ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(85,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1\" VICO 2 HOLES ','BRASS FLANGE 1\" VICO 2 HOLES ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(86,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25 BTH 2 HOLES','BRASS FLANGE 1.25 BTH 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(87,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" INDUSTRIAL 2 HOLES ','BRASS FLANGE 1.25\" INDUSTRIAL 2 HOLES ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(88,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25 BTH 3 HOLES','BRASS FLANGE 1.25 BTH 3 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(89,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" BTH LIGHT 3 HOLES','BRASS FLANGE 1.25\" BTH LIGHT 3 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(90,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25 BTH 6 HOLES','BRASS FLANGE 1.25 BTH 6 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(91,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" SIDE EARTH 4 HOLES','BRASS FLANGE 1.25\" SIDE EARTH 4 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(92,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" LIGHT 5 HOLES ','BRASS FLANGE 1.25\" LIGHT 5 HOLES ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:25','','',0),(93,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" INDUSTRIAL 6 HOLES','BRASS FLANGE 1.25\" INDUSTRIAL 6 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(94,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" SIDE EARTH 6 HOLES','BRASS FLANGE 1.25\" SIDE EARTH 6 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(95,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.5\" CENTER EARTH 4 HOLES ','BRASS FLANGE 1.5\" CENTER EARTH 4 HOLES ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(96,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.5\" HEAVY 4 HOLES','BRASS FLANGE 1.5\" HEAVY 4 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(97,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.5\" INDUSTRIAL 6 HOLES','BRASS FLANGE 1.5\" INDUSTRIAL 6 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(98,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 2\" LIGHT 6 HOLES ','BRASS FLANGE 2\" LIGHT 6 HOLES ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(99,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE KETTLE NON AUTO','BRASS FLANGE KETTLE NON AUTO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(100,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.25\" BTH 4 HOLE','BRASS FLANGE 1.25\" BTH 4 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(101,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 2.5\" 6 HOLE','BRASS FLANGE 2.5\" 6 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(102,1,'Raw Material',4,'BRASS FLANGES',NULL,'BRASS FLANGE 1.5\"/ 6HOLE / HEAVY','BRASS FLANGE 1.5\"/ 6HOLE / HEAVY','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(103,1,'Raw Material',19,'BRASS GLANDS',NULL,'BRASS GLAND1\" DOUBLE COMPRESSOR ','BRASS GLAND1\" DOUBLE COMPRESSOR ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:40','','',0),(104,1,'Raw Material',19,'BRASS GLANDS',NULL,'BRASS GLAND 1\" SINGLE COMPRESSOR','BRASS GLAND 1\" SINGLE COMPRESSOR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(105,1,'Raw Material',19,'BRASS GLANDS',NULL,'BRASS GLAND 1.5\" DOUBLE COMPRESSOR','BRASS GLAND 1.5\" DOUBLE COMPRESSOR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(106,1,'Raw Material',19,'BRASS GLANDS',NULL,'BRASS GLAND 1.5\" SINGLE COMPRESSOR','BRASS GLAND 1.5\" SINGLE COMPRESSOR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(107,1,'Raw Material',19,'BRASS GLANDS',NULL,'BRASS GLAND 5/8\" SINGLE COMPRESSOR ','BRASS GLAND 5/8\" SINGLE COMPRESSOR ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(108,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 5/8\" RC TYPE','BRASS NIPPLE 5/8\" RC TYPE','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(109,1,'Raw Material',6,'BRASS NIPPLES',NULL,'MS NIPPLE 5/8\" SMALL','MS NIPPLE 5/8\" SMALL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(110,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 5/8\" LONG SPECIAL','BRASS NIPPLE 5/8\" LONG SPECIAL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:11:41','','',0),(111,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 5/8\" HEX ','BRASS NIPPLE 5/8\" HEX ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(112,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 5/8\" LONG ','BRASS NIPPLE 5/8\" LONG ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(113,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 5/8\"RC TYPE','BRASS NIPPLE 5/8\"RC TYPE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(114,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 9/16\" BIG 22 MM','BRASS NIPPLE 9/16\" BIG 22 MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(115,1,'Raw Material',6,'BRASS NIPPLES',NULL,'BRASS NIPPLE 9/16\" SMALL ','BRASS NIPPLE 9/16\" SMALL ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(116,1,'Raw Material',20,'BRASS NUTS & WASHERS',NULL,'RC BOLT 3\"','RC BOLT 3\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(117,1,'Raw Material',20,'BRASS NUTS & WASHERS',NULL,'RC BOLT 2\"','RC BOLT 2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(118,1,'Raw Material',20,'BRASS NUTS & WASHERS',NULL,'BRASS NOB','BRASS NOB','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(119,1,'Raw Material',20,'BRASS NUTS & WASHERS',NULL,'BRASS WASHER 6/8\"','BRASS WASHER 6/8\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(120,1,'Raw Material',20,'BRASS NUTS & WASHERS',NULL,'BRASS WASHER 4 MM','BRASS WASHER 4 MM','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(121,1,'Raw Material',20,'BRASS NUTS & WASHERS',NULL,'BRASS NUT 4 MM','BRASS NUT 4 MM','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(122,1,'Raw Material',21,'BUSH',NULL,'NYLON BUSH 15 NO.','NYLON BUSH 15 NO.','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(123,1,'Raw Material',21,'BUSH',NULL,'NYLON BUSH 25 NO','NYLON BUSH 25 NO','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(124,1,'Raw Material',21,'BUSH',NULL,'NYLON BUHS 1/2\"','NYLON BUHS 1/2\"','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(125,1,'Raw Material',22,'CASTING BOXES',NULL,'ALI BOX 2 HOLE','ALI BOX 2 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(126,1,'Raw Material',22,'CASTING BOXES',NULL,'FLAME PROOF BOX 4\"','FLAME PROOF BOX 4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(127,1,'Raw Material',22,'CASTING BOXES',NULL,'FLAME PROOF BOX 6\"','FLAME PROOF BOX 6\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(128,1,'Raw Material',22,'CASTING BOXES',NULL,'FLAME PROOF BOX 300 X 300','FLAME PROOF BOX 300 X 300','SET',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:02','','',0),(129,1,'Raw Material',22,'CASTING BOXES',NULL,'FLAME PROOF BOX 400 X 400','FLAME PROOF BOX 400 X 400','SET',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(130,2,'Gereral Item',41,'COMMON',NULL,'COTTON CLOTHES','COTTON CLOTHES','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(131,2,'Gereral Item',41,'COMMON',NULL,'MS CAP 1.25\" SMALL','MS CAP 1.25\" SMALL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(132,2,'Gereral Item',41,'COMMON',NULL,'32MM CERAMIC BASE','32MM CERAMIC BASE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(133,2,'Gereral Item',41,'COMMON',NULL,'32MM CERAMIC TOP','32MM CERAMIC TOP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(134,2,'Gereral Item',41,'COMMON',NULL,'MS WASHER 5/8\"','MS WASHER 5/8\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(135,2,'Gereral Item',41,'COMMON',NULL,'INSULATOR 6MM','INSULATOR 6MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:38','','',0),(136,2,'Gereral Item',41,'COMMON',NULL,'MS FLANGE 2.5\" 7 HOLES','MS FLANGE 2.5\" 7 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(137,2,'Gereral Item',41,'COMMON',NULL,'MS NUT 2/8\"','MS NUT 2/8\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(138,2,'Gereral Item',41,'COMMON',NULL,'MS BOLT 2/8\"','MS BOLT 2/8\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(139,2,'Gereral Item',41,'COMMON',NULL,'MS WASHER 2/8\"','MS WASHER 2/8\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(140,2,'Gereral Item',41,'COMMON',NULL,'RUBBER WASHER 1.25 \"','RUBBER WASHER 1.25 \"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(141,2,'Gereral Item',41,'COMMON',NULL,'CUTTER 22MM','CUTTER 22MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(142,2,'Gereral Item',41,'COMMON',NULL,'BRASS CIRCLE','BRASS CIRCLE','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(143,2,'Gereral Item',41,'COMMON',NULL,'CUTTER 8\"','CUTTER 8\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(144,2,'Gereral Item',41,'COMMON',NULL,'CUTTER 4\"','CUTTER 4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:13:49','','',0),(145,2,'Gereral Item',41,'COMMON',NULL,'STAR CUTTER','STAR CUTTER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(146,2,'Gereral Item',41,'COMMON',NULL,'DASPASS PRINTED TAPE ( PTD 48X65 )','DASPASS PRINTED TAPE ( PTD 48X65 )','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(147,4,'Electrical Item',44,'ELECTRICALS',NULL,'P V C CHANNEL','P V C CHANNEL','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(148,4,'Electrical Item',44,'ELECTRICALS',NULL,'THERMOSTAT (0-85)','THERMOSTAT (0-85)','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(149,4,'Electrical Item',44,'ELECTRICALS',NULL,'THERMOSTAT 50-300','THERMOSTAT 50-300','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(150,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 4-6 MM R/T 7084','LUGS 4-6 MM R/T 7084','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(151,4,'Electrical Item',44,'ELECTRICALS',NULL,'EXHAUST FAN 15\"','EXHAUST FAN 15\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(152,4,'Electrical Item',44,'ELECTRICALS',NULL,'WHEEL 2\"','WHEEL 2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(153,4,'Electrical Item',44,'ELECTRICALS',NULL,'CONTACTOR MNX 110A 2NO+2NC 240V AC','CONTACTOR MNX 110A 2NO+2NC 240V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(154,4,'Electrical Item',44,'ELECTRICALS',NULL,'CONTACTOR MNX 400A 2NO+2NC 240V AC','CONTACTOR MNX 400A 2NO+2NC 240V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(155,4,'Electrical Item',44,'ELECTRICALS',NULL,'LOW LEVEL SWITCH PSAZ - 100','LOW LEVEL SWITCH PSAZ - 100','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(156,4,'Electrical Item',44,'ELECTRICALS',NULL,'LOW LEVEL SWITCH PU1Z','LOW LEVEL SWITCH PU1Z','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(157,4,'Electrical Item',44,'ELECTRICALS',NULL,'ON OFF STICKER','ON OFF STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(158,4,'Electrical Item',44,'ELECTRICALS',NULL,'FLOT VALVE WITH BALL','FLOT VALVE WITH BALL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:04','','',0),(159,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 2.5 U TYPE 7928','LUGS 2.5 U TYPE 7928','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(160,4,'Electrical Item',44,'ELECTRICALS',NULL,'KPX','KPX','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(161,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 2.5MM R/T 7072','LUGS 2.5MM R/T 7072','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(162,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 1POLE 16A','MCB 1POLE 16A','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(163,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 2.5MM PIN TYPE CP-18 COPPER','LUGS 2.5MM PIN TYPE CP-18 COPPER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(164,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 16MM R/T 7029','LUGS 16MM R/T 7029','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(165,4,'Electrical Item',44,'ELECTRICALS',NULL,'POP RIVETS 1\"','POP RIVETS 1\"','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(166,4,'Electrical Item',44,'ELECTRICALS',NULL,'CONTACTOR MNX 32AMP','CONTACTOR MNX 32AMP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(167,4,'Electrical Item',44,'ELECTRICALS',NULL,'C CHANNEL','C CHANNEL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(168,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 20AMP 4 POLE','MCB 20AMP 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(169,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 63AMP 2 POLE','MCB 63AMP 2 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(170,4,'Electrical Item',44,'ELECTRICALS',NULL,'WHEEL 4\"','WHEEL 4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:16','','',0),(171,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 3 POLE 16AMP','MCB 3 POLE 16AMP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(172,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB BOX 4 POLE','MCB BOX 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(173,4,'Electrical Item',44,'ELECTRICALS',NULL,'SS FLEXIBLE PIPE','SS FLEXIBLE PIPE','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(174,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 3 POLE 32 AMP','MCB 3 POLE 32 AMP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(175,4,'Electrical Item',44,'ELECTRICALS',NULL,'DEAD PLUG','DEAD PLUG','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(176,4,'Electrical Item',44,'ELECTRICALS',NULL,'NAME PLATE DUCT HEATER 230V','NAME PLATE DUCT HEATER 230V','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(177,4,'Electrical Item',44,'ELECTRICALS',NULL,'OPEN & CLOSE STICKER','OPEN & CLOSE STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:17','','',0),(178,4,'Electrical Item',44,'ELECTRICALS',NULL,'Push Lock','Push Lock','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:46','','',0),(179,4,'Electrical Item',44,'ELECTRICALS',NULL,'HEAT SHRINKAGE TUBE YELLOW 8MM','HEAT SHRINKAGE TUBE YELLOW 8MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:46','','',0),(180,4,'Electrical Item',44,'ELECTRICALS',NULL,'POWER REGULATOR EPS1-40','POWER REGULATOR EPS1-40','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:46','','',0),(181,4,'Electrical Item',44,'ELECTRICALS',NULL,'SILICON WIRE 2.5MM','SILICON WIRE 2.5MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:46','','',0),(182,4,'Electrical Item',44,'ELECTRICALS',NULL,'TIE & BELT','TIE & BELT','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:59','','',0),(183,4,'Electrical Item',44,'ELECTRICALS',NULL,'PVC CHENNAL','PVC CHENNAL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:14:59','','',0),(184,4,'Electrical Item',44,'ELECTRICALS',NULL,'SILICON WIRE 1MM','SILICON WIRE 1MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(185,4,'Electrical Item',44,'ELECTRICALS',NULL,'PUSH R STICKER','PUSH R STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(186,4,'Electrical Item',44,'ELECTRICALS',NULL,'PUSH Y STICKER','PUSH Y STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(187,4,'Electrical Item',44,'ELECTRICALS',NULL,'N0+NC','N0+NC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(188,4,'Electrical Item',44,'ELECTRICALS',NULL,'OFF STICKER','OFF STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(189,4,'Electrical Item',44,'ELECTRICALS',NULL,'PUSH B STICKER','PUSH B STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(190,4,'Electrical Item',44,'ELECTRICALS',NULL,'KEY LOCK','KEY LOCK','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(191,4,'Electrical Item',44,'ELECTRICALS',NULL,'CUTTER 14\"','CUTTER 14\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(192,4,'Electrical Item',44,'ELECTRICALS',NULL,'BALL COCK','BALL COCK','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(193,4,'Electrical Item',44,'ELECTRICALS',NULL,'DIGITAL TEMPERATURE METER','DIGITAL TEMPERATURE METER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(194,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 25AMP 4 POLE','MCB 25AMP 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(195,4,'Electrical Item',44,'ELECTRICALS',NULL,'JALI 4\"','JALI 4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(196,4,'Electrical Item',44,'ELECTRICALS',NULL,'PVC KALINGA WIRE 0.75 MM','PVC KALINGA WIRE 0.75 MM','COIL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(197,4,'Electrical Item',44,'ELECTRICALS',NULL,'PVC KALINGA WIRE 1.5 MM','PVC KALINGA WIRE 1.5 MM','COIL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(198,4,'Electrical Item',44,'ELECTRICALS',NULL,'PVC KALINGA WIRE 10 MM','PVC KALINGA WIRE 10 MM','COIL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:00','','',0),(199,4,'Electrical Item',44,'ELECTRICALS',NULL,'PVC KALINGA WIRE 16 MM','PVC KALINGA WIRE 16 MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:01','','',0),(200,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 16 MM P/T CP 8','LUGS 16 MM P/T CP 8','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:01','','',0),(201,4,'Electrical Item',44,'ELECTRICALS',NULL,'LUGS 1.5MM SNAPON 8351','LUGS 1.5MM SNAPON 8351','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:25','','',0),(202,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 10AMP 1 POLE','MCB 10AMP 1 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:25','','',0),(203,4,'Electrical Item',44,'ELECTRICALS',NULL,'ON STICKER','ON STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:25','','',0),(204,4,'Electrical Item',44,'ELECTRICALS',NULL,'EMERGENCY STICKER','EMERGENCY STICKER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(205,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 20A 3 POLE','MCB 20A 3 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(206,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 10AMP 4 POLE','MCB 10AMP 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(207,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 20AMP 1 POLE','MCB 20AMP 1 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(208,4,'Electrical Item',44,'ELECTRICALS',NULL,'SS 304 FLOAT VALVE 3/4\"','SS 304 FLOAT VALVE 3/4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(209,4,'Electrical Item',44,'ELECTRICALS',NULL,'SS 304 END CAP 3/4\"','SS 304 END CAP 3/4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(210,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 50A 220V AC','CONTACTOR 50A 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(211,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 12A 220V AC','CONTACTOR 12A 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(212,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR MR11 220V AC','CONTACTOR MR11 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(213,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 9A 220V AC','CONTACTOR 9A 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(214,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 40A 220V AC','CONTACTOR 40A 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(215,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 32A 220V AC','CONTACTOR 32A 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(216,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 18A 220V AC','CONTACTOR 18A 220V AC','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:45','','',0),(217,4,'Electrical Item',42,'CONTACTOR',NULL,'CONTACTOR 10A 4 POLE','CONTACTOR 10A 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(218,1,'Raw Material',23,'COPPER CUPS',NULL,'COPPER CUP TRIANGULAR 3 HOLES','COPPER CUP TRIANGULAR 3 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(219,1,'Raw Material',23,'COPPER CUPS',NULL,'COPPER CUPS TRIANGULAR 2 HOLES','COPPER CUPS TRIANGULAR 2 HOLES','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(220,1,'Raw Material',24,'DASPASS MATERIALS',NULL,'HOLOGRAM','HOLOGRAM','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(221,4,'Electrical Item',43,'ELECTRIC SWITCHES',NULL,'SELECTOR SWITCH','SELECTOR SWITCH','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(222,4,'Electrical Item',43,'ELECTRIC SWITCHES',NULL,'ON / OFF SWITCH','ON / OFF SWITCH','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(223,4,'Electrical Item',43,'ELECTRIC SWITCHES',NULL,'AIR PRESSURE DIFFERENTIAL SWITCH','AIR PRESSURE DIFFERENTIAL SWITCH','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(224,4,'Electrical Item',44,'ELECTRICALS',NULL,'HUMIDITY CONTROLLER','HUMIDITY CONTROLLER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(225,4,'Electrical Item',44,'ELECTRICALS',NULL,'DIFFERENTIAL SWITCH CLAMP','DIFFERENTIAL SWITCH CLAMP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:15:57','','',0),(226,4,'Electrical Item',44,'ELECTRICALS',NULL,'PVC KALINGA WIRE 1.5 MM','PVC KALINGA WIRE 1.5 MM','COIL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(227,4,'Electrical Item',44,'ELECTRICALS',NULL,'POWER REGULATOR EPS 3-40','POWER REGULATOR EPS 3-40','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(228,4,'Electrical Item',44,'ELECTRICALS',NULL,'POWER REGULATOR EPS 3-60','POWER REGULATOR EPS 3-60','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(229,4,'Electrical Item',44,'ELECTRICALS',NULL,'DIGITAL TEMPERATURE CONTROLLER/ SUB 0( SZ-7510-P)','DIGITAL TEMPERATURE CONTROLLER/ SUB 0( SZ-7510-P)','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(230,4,'Electrical Item',44,'ELECTRICALS',NULL,'KUT 16','KUT 16','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(231,4,'Electrical Item',44,'ELECTRICALS',NULL,'KUT 6 NO.','KUT 6 NO.','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(232,4,'Electrical Item',44,'ELECTRICALS',NULL,'DOOR SWITCH','DOOR SWITCH','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(233,4,'Electrical Item',44,'ELECTRICALS',NULL,'EMERGENCY SWITCH','EMERGENCY SWITCH','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(234,4,'Electrical Item',44,'ELECTRICALS',NULL,'RELAY','RELAY','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:08','','',0),(235,4,'Electrical Item',44,'ELECTRICALS',NULL,'KPY','KPY','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:17','','',0),(236,4,'Electrical Item',44,'ELECTRICALS',NULL,'MCB 16AMP 4 POLE','MCB 16AMP 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(237,4,'Electrical Item',45,'FAN',NULL,'COOLING FAN 4\"','COOLING FAN 4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(238,4,'Electrical Item',46,'FIBER MATERIAL',NULL,'FIBER GLASS INSULATION 32KG DENSITY AND 25MM THICK','FIBER GLASS INSULATION 32KG DENSITY AND 25MM THICK','ROLL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(239,4,'Electrical Item',47,'FIBER STRIPS & ANGEL',NULL,'FIBER STRIP 2.5\"','FIBER STRIP 2.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(240,4,'Electrical Item',48,'FIBER WASHER',NULL,'FIBER WASHER 1\"','FIBER WASHER 1\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(241,4,'Electrical Item',48,'FIBER WASHER',NULL,'FIBER WASHER 1.25\"','FIBER WASHER 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(242,4,'Electrical Item',48,'FIBER WASHER',NULL,'FIBER WASHER 1.5\"','FIBER WASHER 1.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(243,4,'Electrical Item',48,'FIBER WASHER',NULL,'FIBER WASHER 2.5\"','FIBER WASHER 2.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(244,4,'Electrical Item',48,'FIBER WASHER',NULL,'FIBER WASHER 5/8\"','FIBER WASHER 5/8\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(245,4,'Electrical Item',48,'FIBER WASHER',NULL,'FIBER WASHER 9/16\"','FIBER WASHER 9/16\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(246,4,'Electrical Item',49,'FIBER WIRES',NULL,'FIBER WIRE 4 MM','FIBER WIRE 4 MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(247,4,'Electrical Item',49,'FIBER WIRES',NULL,'FIBER WIRE 2.5 MM','FIBER WIRE 2.5 MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(248,4,'Electrical Item',49,'FIBER WIRES',NULL,'FIBER WIRE 6 MM','FIBER WIRE 6 MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:18','','',0),(249,4,'Electrical Item',50,'G.I. FINNS',NULL,'G.I. FINNS DTA 4 HOLES','G.I. FINNS DTA 4 HOLES','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(250,4,'Electrical Item',50,'G.I. FINNS',NULL,'G.I. FINNS FOR FSH HEATERS','G.I. FINNS FOR FSH HEATERS','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(251,4,'Electrical Item',51,'HEAT SHRINKAGE TUBE',NULL,'HEAT SHRINKAGE TUBE RED 8 MM.','HEAT SHRINKAGE TUBE RED 8 MM.','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(252,4,'Electrical Item',51,'HEAT SHRINKAGE TUBE',NULL,'HEAT SHRINKAGE TUBE BLACK 8 MM','HEAT SHRINKAGE TUBE BLACK 8 MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(253,4,'Electrical Item',51,'HEAT SHRINKAGE TUBE',NULL,'HEAT SHRINKAGE TUBE BLUE 8 MM','HEAT SHRINKAGE TUBE BLUE 8 MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(254,4,'Electrical Item',51,'HEAT SHRINKAGE TUBE',NULL,'NAME PLATE','NAME PLATE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(255,4,'Electrical Item',51,'HEAT SHRINKAGE TUBE',NULL,'LOCKS','LOCKS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(256,4,'Electrical Item',51,'HEAT SHRINKAGE TUBE',NULL,'HANDEL 4\"','HANDEL 4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(257,4,'Electrical Item',52,'INDICATING LIGHTS',NULL,'INDICATOR ORANGE','INDICATOR ORANGE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(258,4,'Electrical Item',52,'INDICATING LIGHTS',NULL,'INDICATOR YELLOW','INDICATOR YELLOW','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(259,4,'Electrical Item',52,'INDICATING LIGHTS',NULL,'INDICATOR GREEN','INDICATOR GREEN','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(260,4,'Electrical Item',52,'INDICATING LIGHTS',NULL,'INDICATOR RED','INDICATOR RED','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(261,4,'Electrical Item',52,'INDICATING LIGHTS',NULL,'INDICATOR SWITCH','INDICATOR SWITCH','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(262,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 2.5MM PIN TYPE ','THIMBLE 2.5MM PIN TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:26','','',0),(263,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 2.5MM U TYPE ','THIMBLE 2.5MM U TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:33','','',0),(264,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 2.5MM RING TYPE ','THIMBLE 2.5MM RING TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:33','','',0),(265,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 4.6MM RING TYPE ','THIMBLE 4.6MM RING TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:33','','',0),(266,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 6MM PIN TYPE ','THIMBLE 6MM PIN TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:34','','',0),(267,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 16MM PIN TYPE ','THIMBLE 16MM PIN TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:34','','',0),(268,4,'Electrical Item',54,'THIMBLES & CONNECTOR',NULL,'THIMBLE 16MM RING TYPE ','THIMBLE 16MM RING TYPE ','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:34','','',0),(269,4,'Electrical Item',53,'MCB',NULL,'MCB 4 POLE 32 AMP','MCB 4 POLE 32 AMP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:34','','',0),(270,4,'Electrical Item',53,'MCB',NULL,'MCB 63A 4 POLE','MCB 63A 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:34','','',0),(271,4,'Electrical Item',53,'MCB',NULL,'MCB 40A 4 POLE','MCB 40A 4 POLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:34','','',0),(272,1,'Raw Material',25,'MICA STRIPS & WASHER',NULL,'MICA WASHER ','MICA WASHER ','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(273,1,'Raw Material',25,'MICA STRIPS & WASHER',NULL,'MICA STRIP','MICA STRIP','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(274,1,'Raw Material',25,'MICA STRIPS & WASHER',NULL,'MICA WASHER SMALL','MICA WASHER SMALL','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(275,1,'Raw Material',26,'MILD STEEL',NULL,'MS CAP 2.5\"','MS CAP 2.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(276,1,'Raw Material',26,'MILD STEEL',NULL,'MS CAP 1.5\" LONG','MS CAP 1.5\" LONG','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(277,1,'Raw Material',26,'MILD STEEL',NULL,'MS CAP 1.5\" SMALL','MS CAP 1.5\" SMALL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(278,1,'Raw Material',26,'MILD STEEL',NULL,'MS COTTORY 2 HOLE','MS COTTORY 2 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(279,1,'Raw Material',26,'MILD STEEL',NULL,'MS WASHER 9/16\"','MS WASHER 9/16\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(280,1,'Raw Material',26,'MILD STEEL',NULL,'MS NIPPLE 5/8\"LONG','MS NIPPLE 5/8\"LONG','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:43','','',0),(281,1,'Raw Material',26,'MILD STEEL',NULL,'MS NIPPLE 9/16\" SMALL','MS NIPPLE 9/16\" SMALL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:51','','',0),(282,1,'Raw Material',26,'MILD STEEL',NULL,'IG MS COTTORY 3 HOLE','IG MS COTTORY 3 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:51','','',0),(283,1,'Raw Material',26,'MILD STEEL',NULL,'MS NIPPLE 9/16\" LONG','MS NIPPLE 9/16\" LONG','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:51','','',0),(284,1,'Raw Material',26,'MILD STEEL',NULL,'MS DTA CLAMP 5 HOLE LONG','MS DTA CLAMP 5 HOLE LONG','SET',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(285,1,'Raw Material',26,'MILD STEEL',NULL,'MS CAP 2\"','MS CAP 2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(286,1,'Raw Material',26,'MILD STEEL',NULL,'MS FLANGE 1.25\" / 3 HOLE','MS FLANGE 1.25\" / 3 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(287,1,'Raw Material',26,'MILD STEEL',NULL,'MS FLANGE 12 HOLE','MS FLANGE 12 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(288,1,'Raw Material',26,'MILD STEEL',NULL,'POP RIVETS 1/2\"','POP RIVETS 1/2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(289,1,'Raw Material',26,'MILD STEEL',NULL,'POP RIVETS 3/4\"','POP RIVETS 3/4\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(290,1,'Raw Material',26,'MILD STEEL',NULL,'MS FINNED 3/8\"','MS FINNED 3/8\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(291,1,'Raw Material',26,'MILD STEEL',NULL,'MS FINNEDS 1/2\"','MS FINNEDS 1/2\"','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(292,1,'Raw Material',26,'MILD STEEL',NULL,'SCUN GREY END CLAMP','SCUN GREY END CLAMP','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(293,1,'Raw Material',26,'MILD STEEL',NULL,'CLAMP 2 HOLE','CLAMP 2 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(294,1,'Raw Material',27,'MOTI',NULL,'MOTI 3 NO','MOTI 3 NO','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:16:52','','',0),(295,1,'Raw Material',27,'MOTI',NULL,'MOTI 4 NO','MOTI 4 NO','PKT',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(296,1,'Raw Material',28,'NAME PLATE',NULL,'NAME PLATE DUCT HEATER 415V','NAME PLATE DUCT HEATER 415V','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(297,1,'Raw Material',28,'NAME PLATE',NULL,'NAME PLATE STEAM GENERATOR','NAME PLATE STEAM GENERATOR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(298,1,'Raw Material',29,'OIL',NULL,'LUBRICATING OIL','LUBRICATING OIL','LTR.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(299,1,'Raw Material',29,'OIL',NULL,'SILICON OIL','SILICON OIL','LTR.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(300,1,'Raw Material',29,'OIL',NULL,'T.C.E','T.C.E','LTR.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(301,1,'Raw Material',30,'PG GLAND',NULL,'PG GLAND 16 NO','PG GLAND 16 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(302,1,'Raw Material',30,'PG GLAND',NULL,'PG GLAND 21 NO','PG GLAND 21 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(303,1,'Raw Material',30,'PG GLAND',NULL,'PG GLAND 25 NO','PG GLAND 25 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(304,1,'Raw Material',30,'PG GLAND',NULL,'PG GLAND 29 NO','PG GLAND 29 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(305,1,'Raw Material',30,'PG GLAND',NULL,'PG GLAND 42 NO','PG GLAND 42 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(306,1,'Raw Material',30,'PG GLAND',NULL,'PG GLAND 9 NO','PG GLAND 9 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(307,1,'Raw Material',31,'PORCELAIN',NULL,'STRIP PORCELAIN 1.75\" X 2\" 4 HOLE','STRIP PORCELAIN 1.75\" X 2\" 4 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(308,1,'Raw Material',31,'PORCELAIN',NULL,'VENUS TOP 32 MM','VENUS TOP 32 MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:00','','',0),(309,1,'Raw Material',31,'PORCELAIN',NULL,'STRIP PORCELIN 1.75\" X 2\" 8 HOLE','STRIP PORCELIN 1.75\" X 2\" 8 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:10','','',0),(310,1,'Raw Material',31,'PORCELAIN',NULL,'BASE 1.25\"','BASE 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:10','','',0),(311,1,'Raw Material',31,'PORCELAIN',NULL,'PORCELAIN ROUND 1.25X2\"/ 8 HOLE','PORCELAIN ROUND 1.25X2\"/ 8 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:10','','',0),(312,1,'Raw Material',31,'PORCELAIN',NULL,'BASE 1.5\"','BASE 1.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:10','','',0),(313,1,'Raw Material',31,'PORCELAIN',NULL,'TOP 1.25\"','TOP 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:10','','',0),(314,1,'Raw Material',32,'POWDER',NULL,'FLUX POWDER','FLUX POWDER','BOX',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:10','','',0),(315,1,'Raw Material',33,'PURCHASE GOODS',NULL,'MS FLANGE 152 DIA 12 HOLE','MS FLANGE 152 DIA 12 HOLE','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:11','','',0),(316,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'C WIRE 23 SWG','C WIRE 23 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:11','','',0),(317,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'C WIRE 24 SWG','C WIRE 24 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:11','','',0),(318,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'C WIRE 26 SWG','C WIRE 26 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(319,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'C WIRE 27 SWG','C WIRE 27 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(320,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'MS TERMINAL  HEAD 4X85\"','MS TERMINAL  HEAD 4X85\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(321,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 20 SWG','80:20 WIRE 20 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(322,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 21 SWG','80:20 WIRE 21 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(323,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 23 SWG','80:20 WIRE 23 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(324,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 25 SWG','80:20 WIRE 25 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(325,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 27 SWG','80:20 WIRE 27 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(326,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 22 SWG','80:20 WIRE 22 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(327,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 24 SWG','80:20 WIRE 24 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(328,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 26 SWG','80:20 WIRE 26 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(329,1,'Raw Material',34,'RESISTANCE WIRES',NULL,'80:20 WIRE 32 SWG','80:20 WIRE 32 SWG','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:19','','',0),(330,1,'Raw Material',35,'RUBBER WASHER',NULL,'USHA CUP/ RUBBER WASHER BIG','USHA CUP/ RUBBER WASHER BIG','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:20','','',0),(331,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER WASHER TRIANGULAR','RUBBER WASHER TRIANGULAR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:20','','',0),(332,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER GASKIT 0.5\"','RUBBER GASKIT 0.5\"','BUNDEL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(333,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER GASKIT 1.5\"( TO BE DELETED)','RUBBER GASKIT 1.5\"( TO BE DELETED)','BUNDEL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(334,1,'Raw Material',35,'RUBBER WASHER',NULL,'CONNECTION RUBBER WASHER','CONNECTION RUBBER WASHER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(335,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER GASKIT  SPECIAL','RUBBER GASKIT  SPECIAL','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(336,1,'Raw Material',35,'RUBBER WASHER',NULL,'RING RUBBER WASHER','RING RUBBER WASHER','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(337,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER WASHER 2\"','RUBBER WASHER 2\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(338,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER WASHER 1.5\"','RUBBER WASHER 1.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(339,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER WASHER 2.5\"','RUBBER WASHER 2.5\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(340,1,'Raw Material',35,'RUBBER WASHER',NULL,'RUBBER WASHER 1.25\"','RUBBER WASHER 1.25\"','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(341,1,'Raw Material',36,'SEALING BIDS',NULL,'SEALING BEAD 13 NO','SEALING BEAD 13 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(342,1,'Raw Material',36,'SEALING BIDS',NULL,'SEALING BIDS 15 NOS','SEALING BIDS 15 NOS','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:26','','',0),(343,1,'Raw Material',36,'SEALING BIDS',NULL,'SEALING BEAD 9 NO','SEALING BEAD 9 NO','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(344,1,'Raw Material',37,'SILICON MATERIALS',NULL,'SILICON WIRE 4MM','SILICON WIRE 4MM','MTR',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(345,1,'Raw Material',38,'SOFT TUBE',NULL,'SOFT TUBE 6.4X4.2X10 MM','SOFT TUBE 6.4X4.2X10 MM','BOX',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(346,1,'Raw Material',38,'SOFT TUBE',NULL,'SOFT TUBE 6.4X4.2X40 MM','SOFT TUBE 6.4X4.2X40 MM','BOX',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(347,1,'Raw Material',38,'SOFT TUBE',NULL,'SOFT TUBE 5.5X3.3X10 MM','SOFT TUBE 5.5X3.3X10 MM','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(348,1,'Raw Material',39,'SPRAY',NULL,'WHITE SPRAY 7035','WHITE SPRAY 7035','BOTTEL',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(349,1,'Raw Material',39,'SPRAY',NULL,'SILVER SPRAY','SILVER SPRAY','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:27','','',0),(350,1,'Raw Material',39,'SPRAY',NULL,'SILVER SPRAY HR','SILVER SPRAY HR','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:54','','',0),(351,1,'Raw Material',40,'WELDING ROD',NULL,'WELDING ROD SILVER 35%','WELDING ROD SILVER 35%','Nos',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:54','','',0),(352,1,'Raw Material',40,'WELDING ROD',NULL,'BLACK WELDING ROD','BLACK WELDING ROD','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:54','','',0),(353,1,'Raw Material',40,'WELDING ROD',NULL,'BRASS WELDING ROD','BRASS WELDING ROD','KG.',NULL,0,0,'',0,'','','',0,0,0,0,0,0,0,0,0,0,'','','0000-00-00 00:00:00','2019-09-16 13:17:55','','',0);
+/*!40000 ALTER TABLE `material` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `material_group`
+--
+
+DROP TABLE IF EXISTS `material_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `material_group` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MATERIAL_GROUP_NAME` varchar(20) NOT NULL,
+  `IS_ACTIVE` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `UNIQUE_MATERIAL_GROUP_NAME` (`MATERIAL_GROUP_NAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `material_group`
+--
+
+LOCK TABLES `material_group` WRITE;
+/*!40000 ALTER TABLE `material_group` DISABLE KEYS */;
+INSERT INTO `material_group` VALUES (1,'Raw Material',1),(2,'General Item',1),(3,'Plant Machinery',1),(4,'Electrical Item',1);
+/*!40000 ALTER TABLE `material_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `material_sub_group`
+--
+
+DROP TABLE IF EXISTS `material_sub_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `material_sub_group` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MATERIAL_SUB_GROUP_NAME` varchar(20) NOT NULL,
+  `MATERIAL_GROUP_ID` int(11) NOT NULL,
+  `IS_ACTIVE` tinyint(4) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `UNIQUE_MATERIAL_SUB_GROUP_NAME` (`MATERIAL_SUB_GROUP_NAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `material_sub_group`
+--
+
+LOCK TABLES `material_sub_group` WRITE;
+/*!40000 ALTER TABLE `material_sub_group` DISABLE KEYS */;
+INSERT INTO `material_sub_group` VALUES (3,'GI Sheet',1,0),(4,'Brass Flange',1,0),(5,'Brass Cup ',1,0),(6,'Brass Nipple ',1,0),(7,'MS Nipple ',1,0),(8,'Brass Item',1,0),(9,'MS CAP',1,0),(11,'DSD WIRE ',1,0),(12,'C WIRE',1,0),(13,'Brass Cup ',1,0),(14,'SS Tubes',1,0),(15,'KETTLE MATERIALS',1,0),(16,'BRASS ADOPTERS',1,0),(17,'BRASS CHECKNUTS',1,0),(18,'BRASS CLAMPS',1,0),(19,'BRASS GLANDS',1,0),(20,'BRASS NUTS & WASHERS',1,0),(21,'BUSH',1,0),(22,'CASTING BOXES',1,0),(23,'COPPER CUPS',1,0),(24,'DASPASS MATERIALS',1,0),(25,'MICA STRIPS & WASHER',1,0),(26,'MILD STEEL',1,0),(27,'MOTI',1,0),(28,'NAME PLATE',1,0),(29,'OIL',1,0),(30,'PG GLAND',1,0),(31,'PORCELAIN',1,0),(32,'POWDER',1,0),(33,'PURCHASE GOODS',1,0),(34,'RESISTANCE WIRES',1,0),(35,'RUBBER WASHER',1,0),(36,'SEALING BIDS',1,0),(37,'SILICON MATERIALS',1,0),(38,'SOFT TUBE',1,0),(39,'SPRAY',1,0),(40,'WELDING ROD',1,0),(41,'COMMON',2,0),(42,'CONTACTOR',4,0),(43,'ELECTRIC SWITCHES',4,0),(44,'ELECTRICALS',4,0),(45,'FAN',4,0),(46,'FIBER MATERIAL',4,0),(47,'FIBER STRIPS & ANGEL',4,0),(48,'FIBER WASHER',4,0),(49,'FIBER WIRES',4,0),(50,'G.I. FINNS',4,0),(51,'HEAT SHRINKAGE TUBE',4,0),(52,'INDICATING LIGHTS',4,0),(53,'MCB',4,0),(54,'THIMBLES & CONNECTOR',4,0);
+/*!40000 ALTER TABLE `material_sub_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order`
+--
+
+DROP TABLE IF EXISTS `order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `QUOTATION_ID` int(11) NOT NULL,
+  `CUSTOMER_ID` int(11) NOT NULL,
+  `CUSTOMER_NAME` varchar(20) NOT NULL,
+  `CUSTOMER_ADDRESS` text NOT NULL,
+  `CUSTOMER_CONTACT_NO` varchar(20) NOT NULL,
+  `PACKING_TERM` varchar(200) NOT NULL,
+  `FREIGHT_TERM` varchar(200) NOT NULL,
+  `PAYMENT_TERM` varchar(200) NOT NULL,
+  `DELIVERY_TERM` varchar(200) NOT NULL,
+  `TAX_DETAIL` varchar(200) NOT NULL,
+  `REMARKS` varchar(100) DEFAULT NULL,
+  `STATUS` varchar(10) NOT NULL,
+  `INDUSTRY_ID` int(11) NOT NULL,
+  `DELIVERY_DATE` date NOT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
+  ` MODYFIED_ON` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,2,5,'Daspass Sales Corpor','Plot no A-4, Street no -4, Anand Parbat Industiral Area, New Delhi - 110005 New Delhi Delhi India','','Included','Will be charged Extra                        ','30 % Advance Balance Before Deliver Against Performa Invoice','','GST will be charged Extra @ 18%                        ','','PRODUCTION',0,'0000-00-00','2019-09-02 12:55:19','2019-09-14 09:27:27','admin','admin',1),(2,3,8,'Waves Aircon Pvt. Lt','G-1, 797, 795, 794 & 793 & H-42-43, RIICO Industrial Area,  Road no 20A, Bhiwadi 301019, Alwar Rajasthan Bhiwadi Rajasthan India','','Included in Prices.','To Pay Basis.','60 Days PDC.','','GST 18% will be charges extra.',NULL,'PLANNING',0,'2019-09-16','2019-09-12 15:44:01','2019-09-14 06:00:51','admin','admin',1),(3,6,11,'Vyankatesh Optics','G-642A, Marudhar Industrial Area, Phase II, Basani,  Jodhpur - 342005, Rajasthan. Jodhpur Rajasthan India','','Packing will be charged extra 3% for Wooden Boxes.','To Pay Basis by Pooja Transprot','100% Before Delivery Against Performa Invoice','','GST Will be charged extra @ 18%',NULL,'PLANNING',0,'2019-09-26','2019-09-13 12:12:23','2019-09-14 06:02:32','admin','admin',1),(4,6,11,'Vyankatesh Optics','G-642A, Marudhar Industrial Area, Phase II, Basani,  Jodhpur - 342005, Rajasthan. Jodhpur Rajasthan India','','Packing will be charged extra 3% for Wooden Boxes.','To Pay Basis by Pooja Transprot','100% Before Delivery Against Performa Invoice','','GST Will be charged extra @ 18%',NULL,'',0,'2019-09-28','2019-09-14 11:33:24','2019-09-14 06:03:24','admin',NULL,1),(5,8,13,'Fedders Lloyd Electr','Saketi Road, Kala-Amb Sirmour - 173030, Himachal Pradesh. Baddi Himachal Pradesh India','','Included in Prices','Topay Basis','100% Before Dispatch','','GST will be charged Extra 18%',NULL,'PRODUCTION',0,'2019-09-20','2019-09-14 14:42:00','2019-09-14 09:27:48','admin','admin',1);
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_dispatch`
+--
+
+DROP TABLE IF EXISTS `order_dispatch`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_dispatch` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_ID` int(11) NOT NULL,
+  `CUSTOMER_ID` int(11) NOT NULL,
+  `CUSTOMER_NAME` varchar(20) NOT NULL,
+  `CUSTOMER_ADDRESS` text NOT NULL,
+  `CUSTOMER_CONTACT_NO` varchar(20) NOT NULL,
+  `REMARKS` varchar(100) NOT NULL,
+  `STATUS` varchar(10) NOT NULL,
+  `INVOICE_NO` varchar(20) NOT NULL,
+  `INVOICE_VALUE` varchar(20) NOT NULL,
+  `TRANSPORT_NAME` varchar(20) NOT NULL,
+  `CR_NO` varchar(20) NOT NULL,
+  `TRANSPORT_DATE` date NOT NULL,
+  `GR_DATE` date NOT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
+  ` MODYFIED_ON` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_dispatch`
+--
+
+LOCK TABLES `order_dispatch` WRITE;
+/*!40000 ALTER TABLE `order_dispatch` DISABLE KEYS */;
+INSERT INTO `order_dispatch` VALUES (1,5,0,'Fedders Lloyd Electr','Saketi Road, Kala-Amb Sirmour - 173030, Himachal Pradesh. Baddi Himachal Pradesh India','','','','01','44500','TCI Express Pvt. Ltd','400552700','2019-09-14','2019-09-14','2019-09-14 14:59:13','2019-09-14 09:29:13','admin',NULL,1);
+/*!40000 ALTER TABLE `order_dispatch` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_item`
+--
+
+DROP TABLE IF EXISTS `order_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_item` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_ID` int(11) NOT NULL,
+  `INVENTORY_ID` int(11) NOT NULL,
+  `ITEM_NAME` varchar(50) NOT NULL,
+  `QUANTITY` int(11) NOT NULL,
+  `RATE` float NOT NULL,
+  `PRICE` float NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `PACK_ID` (`INVENTORY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_item`
+--
+
+LOCK TABLES `order_item` WRITE;
+/*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
+INSERT INTO `order_item` VALUES (1,1,0,'Finned Strip Heaters 3.0 Kw',50,0,0),(2,2,0,'Finned Strip Heater 2.0 Kw / Length 29',10,600,6000),(3,3,0,'Duct Heater 36.0 Kw (600x400x550)',4,46340,185360),(4,4,0,'Duct Heater 36.0 Kw (600x400x550)',4,46340,185360),(5,5,0,'M type 400 watt for LHB',200,190,38000);
+/*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_material`
+--
+
+DROP TABLE IF EXISTS `order_material`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_material` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_ID` int(11) NOT NULL,
+  `MATERIAL_ID` int(11) NOT NULL,
+  `ITEM_NAME` varchar(50) NOT NULL,
+  `UOM` varchar(20) NOT NULL,
+  `QUANTITY` int(11) NOT NULL,
+  `QUALITY_STATUS` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `MATERIAL_ID` (`MATERIAL_ID`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_material`
+--
+
+LOCK TABLES `order_material` WRITE;
+/*!40000 ALTER TABLE `order_material` DISABLE KEYS */;
+INSERT INTO `order_material` VALUES (1,1,3,'GI Strip 18 Swg ','Nos',50,''),(2,2,6,'BRASS FLANGE 1.5','Nos',10,''),(3,3,5,'BRASS IG CUP 2 HOLE ','PCS',10,''),(4,3,7,'BRASS KETTLE AUTO Fl','Nos',15,''),(5,3,8,'BRASS NIPPLE 5/8\" RC','Nos',20,''),(6,3,28,'BRASS CUP MINI BAJAJ','Nos',50,''),(7,3,39,'DSD WIRE 24 SWG','KG',1,''),(8,3,43,'G.P SHEET 26 SWG','KG',25,''),(9,5,45,'Brass Nipple 9/16\" / 22 mm long','Nos',400,''),(10,5,39,'DSD WIRE 24 SWG','KG',1,'');
+/*!40000 ALTER TABLE `order_material` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `production_stage`
+--
+
+DROP TABLE IF EXISTS `production_stage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `production_stage` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_ID` int(11) NOT NULL,
+  `PIPE_CUTTING_DATE` datetime NOT NULL,
+  `COILING_DATE` datetime NOT NULL,
+  `FILLING_DATE` datetime NOT NULL,
+  `FILLING_QUALITY_CHECK_DATE` datetime NOT NULL,
+  `ELECRICAL_TESTING_1_DATE` datetime NOT NULL,
+  `ELECRICAL_TESTING_1_QC_DATE` datetime NOT NULL,
+  `ROLLING_DATE` datetime NOT NULL,
+  `ROLLING_QUALITY_CHECK_DATE` datetime NOT NULL,
+  `ANNEALING_DATE` datetime NOT NULL,
+  `BENDING_DATE` datetime NOT NULL,
+  `FINNING_DATE` datetime NOT NULL,
+  `BRAZING_DATE` datetime NOT NULL,
+  `BRAZING_QC_DATE` datetime NOT NULL,
+  `ELECRICAL_TESTING_2_DATE` datetime NOT NULL,
+  `ELECRICAL_TESTING_2_QC_DATE` datetime NOT NULL,
+  `SEALING_DATE` datetime NOT NULL,
+  `MOUNTING_DATE` datetime NOT NULL,
+  `MOUNTING_QC_DATE` datetime NOT NULL,
+  `ASSEMBLY_DATE` datetime NOT NULL,
+  `ELECTRICAL_CONNECTION_DATE` datetime NOT NULL,
+  `FINAL_TESTING_DATE` datetime NOT NULL,
+  `FINAL_TESTING_QC_DATE` datetime NOT NULL,
+  `FINAL_INSPECTION_DATE` datetime NOT NULL,
+  `FINAL_INSPECTION_QC_DATE` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ORDER_ID` (`ORDER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `production_stage`
+--
+
+LOCK TABLES `production_stage` WRITE;
+/*!40000 ALTER TABLE `production_stage` DISABLE KEYS */;
+INSERT INTO `production_stage` VALUES (1,5,'2019-09-14 14:49:15','2019-09-14 14:49:15','2019-09-14 14:49:15','0000-00-00 00:00:00','2019-09-14 14:49:15','2019-09-14 14:49:15','2019-09-14 14:49:15','0000-00-00 00:00:00','2019-09-14 14:49:15','2019-09-14 14:49:15','0000-00-00 00:00:00','2019-09-14 14:49:15','0000-00-00 00:00:00','2019-09-14 14:49:15','2019-09-14 14:49:15','2019-09-14 14:49:15','2019-09-14 14:49:15','0000-00-00 00:00:00','0000-00-00 00:00:00','2019-09-14 14:54:55','2019-09-14 14:49:15','2019-09-14 14:49:15','2019-09-14 14:54:55','2019-09-14 14:54:55');
+/*!40000 ALTER TABLE `production_stage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchase`
+--
+
+DROP TABLE IF EXISTS `purchase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `purchase` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PO_TYPE` varchar(20) NOT NULL,
+  `DELIVERY_ADDRESS` text NOT NULL,
+  `DELIVERY_MODE` varchar(200) NOT NULL,
+  `DELIVERY_SCHEDULE` date NOT NULL,
+  `REMARKS` text,
+  `VENDOR_ID` int(11) NOT NULL,
+  `VENDOR_NAME` varchar(50) NOT NULL,
+  `VENDOR_ADDRESS` text NOT NULL,
+  `GSTIN` varchar(20) NOT NULL,
+  `TOTAL_PRICE` float NOT NULL,
+  `APPROVED` varchar(20) DEFAULT NULL,
+  `STATUS` varchar(20) DEFAULT NULL,
+  `CHALLAN_NUMBER` varchar(20) NOT NULL,
+  `CHALLAN_DATE` date NOT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
+  ` MODYFIED_ON` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchase`
+--
+
+LOCK TABLES `purchase` WRITE;
+/*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
+INSERT INTO `purchase` VALUES (1,'IN_DIRECT','delivery add','sdcdce','0000-00-00',NULL,1,'vendor name','pritampura new delhi delhi delhi India','gstin',1.2,'NO','PENDING','1','2019-08-13','2019-08-12 17:27:47','2019-08-13 06:38:05','admin','admin',1),(2,'TRADING_ITEM','Delhi','by hand','0000-00-00',NULL,1,'vendor name','pritampura new delhi delhi delhi India','gstin',0,'YES','APPROVED','','0000-00-00','2019-08-13 12:52:59','2019-08-13 07:22:59','admin',NULL,1),(3,'IT_ACCESSORIES','defew','fefgrewg','0000-00-00',NULL,1,'vendor name','pritampura new delhi delhi delhi India','gstin',120,NULL,'SUBMIT','3','2019-08-26','2019-08-26 16:00:13','2019-08-26 10:33:06','admin','admin',1),(4,'RAW_MATERIAL','A-582/3 Shastri Nagar, NEW DELHI, 110052','by road','0000-00-00',NULL,2,'Sunil Enterprises','A-582/3 Shastri Nagar, NEW DELHI, 110052 A-582/3 Shastri Nagar, NEW DELHI, 110052 New Delhi New Delhi India','',2700,NULL,NULL,'','0000-00-00','2019-08-27 17:56:05','2019-08-27 12:26:05','purchase',NULL,1),(5,'RAW_MATERIAL','A-582/3 Shastri Nagar, NEW DELHI, 110052','by road','0000-00-00',NULL,2,'Sunil Enterprises','A-582/3 Shastri Nagar, NEW DELHI, 110052 A-582/3 Shastri Nagar, NEW DELHI, 110052 New Delhi New Delhi India','',574200,NULL,NULL,'','0000-00-00','2019-08-27 18:06:21','2019-08-27 12:36:21','purchase',NULL,1),(6,'RAW_MATERIAL','A-582/3 Shastri Nagar, NEW DELHI, 110052','by road','0000-00-00',NULL,2,'Sunil Enterprises','A-582/3 Shastri Nagar, NEW DELHI, 110052 A-582/3 Shastri Nagar, NEW DELHI, 110052 New Delhi New Delhi India','',270000,NULL,NULL,'','0000-00-00','2019-08-28 10:42:50','2019-08-28 05:12:50','purchase',NULL,1),(7,'RAW_MATERIAL','DasPass Sales Corporation Ltd.','by road','0000-00-00',NULL,5,'JLC Elctronice','Jaipur Jaipur Jaipur Rajasthan India','03AKOPG8909F2ZF',5900,NULL,'SUBMIT','7','0000-00-00','2019-09-02 13:54:10','2019-09-02 08:42:09','admin','admin',1),(8,'RAW_MATERIAL','Daspass','ROAD','2019-09-14','            Urgent             ',7,'D.C KRISHNA & CO','156-A, BHAGIRATHI PLACE , CHADNI CHAWK , DELHI  156-A, BHAGIRATHI PLACE , CHADNI CHAWK , DELHI    India','07AAAFD1800D1ZB',3386.6,NULL,NULL,'','0000-00-00','2019-09-14 15:01:44','2019-09-14 09:31:44','admin',NULL,1);
+/*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchase_material`
+--
+
+DROP TABLE IF EXISTS `purchase_material`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `purchase_material` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PURCHASE_ID` int(11) NOT NULL,
+  `MATERIAL_ID` int(11) NOT NULL,
+  `ITEM_NAME` varchar(50) NOT NULL,
+  `UOM` varchar(20) NOT NULL,
+  `QUANTITY` int(11) NOT NULL,
+  `RATE` int(11) NOT NULL,
+  `SGST` float NOT NULL,
+  `CGST` float NOT NULL,
+  `IGST` float NOT NULL,
+  `BASIC_PRICE` float NOT NULL,
+  `PRICE` float NOT NULL,
+  `GATE_STATUS` varchar(20) NOT NULL,
+  `GATE_DATE` datetime NOT NULL,
+  `QUALITY_STATUS` varchar(20) NOT NULL,
+  `QUALITY_QUANTITY` int(11) NOT NULL,
+  `QUALITY_DATE` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `MATERIAL_ID` (`MATERIAL_ID`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchase_material`
+--
+
+LOCK TABLES `purchase_material` WRITE;
+/*!40000 ALTER TABLE `purchase_material` DISABLE KEYS */;
+INSERT INTO `purchase_material` VALUES (1,1,1,'iem name','uom',1,1,0.08,0.12,0,1,1.2,'APPROVE','2019-08-13 12:08:05','0',0,'0000-00-00 00:00:00'),(2,2,2,'item 2','KG',10,0,0,0,0,0,0,'','0000-00-00 00:00:00','0',0,'0000-00-00 00:00:00'),(3,3,1,'iem name','CM',10,10,8,12,0,100,120,'APPROVE','2019-08-26 16:02:24','',0,'0000-00-00 00:00:00'),(4,4,1,'iem name','CM',50,45,180,270,0,2250,2700,'','0000-00-00 00:00:00','',0,'0000-00-00 00:00:00'),(5,5,2,'item 2','KG',4000,45,9000,18000,0,180000,207000,'','0000-00-00 00:00:00','',0,'0000-00-00 00:00:00'),(6,5,1,'iem name','CM',4500,68,24480,36720,0,306000,367200,'','0000-00-00 00:00:00','',0,'0000-00-00 00:00:00'),(7,6,1,'iem name','CM',5000,45,18000,27000,0,225000,270000,'','0000-00-00 00:00:00','',0,'0000-00-00 00:00:00'),(8,7,3,'GI Strip 18 Swg ','Nos',100,50,450,450,0,0,5900,'APPROVE','2019-09-02 13:58:20','APPROVE',0,'2019-09-02 14:11:40'),(9,7,0,'GI Strip 18 Swg ','',0,0,0,0,0,0,0,'APPROVE','2019-09-02 13:58:20','APPROVE',0,'2019-09-02 14:11:40'),(10,8,39,'DSD WIRE 24 SWG','KG',2,1435,258.3,258.3,0,0,3386.6,'','0000-00-00 00:00:00','',0,'0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `purchase_material` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `quotation`
+--
+
+DROP TABLE IF EXISTS `quotation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `quotation` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CUSTOMER_ID` int(11) NOT NULL,
+  `CUSTOMER_NAME` varchar(100) NOT NULL,
+  `CONTACT_PERSON` varchar(100) NOT NULL,
+  `ADDRESS` varchar(500) NOT NULL,
+  `PRODUCT_NAME` varchar(100) NOT NULL,
+  `QUANTITY` float DEFAULT NULL,
+  `PRICE` float NOT NULL,
+  `TOTAL_PRICE` float NOT NULL,
+  `PACKING_TERM` varchar(500) DEFAULT NULL,
+  `FREIGHT_TERM` varchar(500) DEFAULT NULL,
+  `PAYMENT_TERM` varchar(500) DEFAULT NULL,
+  `TAX_DETAIL` varchar(500) DEFAULT NULL,
+  `CREATED_ON` datetime NOT NULL,
+  `MODYFIED_ON` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) NOT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `IS_ACTIVE` (`IS_ACTIVE`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `quotation`
+--
+
+LOCK TABLES `quotation` WRITE;
+/*!40000 ALTER TABLE `quotation` DISABLE KEYS */;
+INSERT INTO `quotation` VALUES (1,6,'SK Systems Pvt. Ltd.','Deepak Verma (Sr. Manager)','601, V4 Tower, Plot no 14, Karkardooma Comm. Center, Delhi - 92 New Delhi 110092 New Delhi Delhi India','',NULL,0,18390,'Will be Charged Extra @ 5% of Basic Value','To Pay Basis','30 Days from the Date of Invoice ','GST will be charged Extra @ 18%','2019-09-12 10:55:58','2019-09-12 05:25:58','admin',NULL,1),(2,7,'DAR','Amit Chobharkar','Tower 11, Cybercity, Magarpatta City,  Hadapsar, Pune - 411013 Maharashtra Maharashtra India','',NULL,0,1018900,'Packing Will be charged Extra @ 5% of basic Value','Will be charged extra at actual or Topay Basis','30% Advance and balance against Performa Invoice before Dispatch','GST will be charged Extra @ 18%','2019-09-12 11:16:50','2019-09-12 05:46:50','admin',NULL,1),(3,8,'Waves Aircon Pvt. Lt','Ram Kumar Sharma','G-1, 797, 795, 794 & 793 & H-42-43, RIICO Industrial Area,  Road no 20A, Bhiwadi 301019, Alwar Rajasthan Bhiwadi Rajasthan India','',NULL,0,6000,'Included in Prices.','To Pay Basis.','60 Days PDC.','GST 18% will be charges extra.','2019-09-12 15:43:36','2019-09-12 10:13:36','admin',NULL,1),(4,9,'UHP Technologies Pvt','S. Naveen Kumar (Senior HVAC Design Engineer)','#1256, 3rd Floor, KAS Tower, 9th Cross,  1st Stage, 4th Block, HBR Layout, Bengaluru - 560043. Bangalore Karnataka India','',NULL,0,141780,'Packing will be charged extra at actual','Topay Basis','30% Advance and balance against Performa Invoice before Dispatch','GST will be charged Extra @ 18%','2019-09-13 11:26:35','2019-09-13 05:56:35','admin',NULL,1),(5,10,'Ensol','Rushabh Acharya','B1-1201, Westgate Business Bay, Opp. Andaz Party Plot,  SG Highway, Makarba, Ahmedabad - 380051 Ahmedabad Gujarat India','',NULL,0,61560,'will be charged extra at actual','topay basis','33% Advance and balance against performa invoice before dispatch','GST will be charged extra @ 18%','2019-09-13 11:34:10','2019-09-13 06:04:10','admin',NULL,1),(6,11,'Vyankatesh Optics','Vijendra Arora','G-642A, Marudhar Industrial Area, Phase II, Basani,  Jodhpur - 342005, Rajasthan. Jodhpur Rajasthan India','',NULL,0,185360,'Packing will be charged extra 3% for Wooden Boxes.','To Pay Basis by Pooja Transprot','100% Before Delivery Against Performa Invoice','GST Will be charged extra @ 18%','2019-09-13 12:11:01','2019-09-13 06:41:01','admin',NULL,1),(7,12,'Sterling & Wilson Pr','S. Gokulakrishnan','No. 4A/14, 6th Cross, Chikka Adugodi New Extension,  Thavarekere Main Road, Bangalore - 560029. Bangalore Karnataka India','',NULL,0,81390,'Included Export Worthy Packing','Freight will be charged Extra 40000.00','100% Through VFS Schems','GST will be charged extra 18%','2019-09-13 12:28:35','2019-09-13 06:58:35','admin',NULL,1),(8,13,'Fedders Lloyd Electr','Ritesh Bhardwaj','Saketi Road, Kala-Amb Sirmour - 173030, Himachal Pradesh. Baddi Himachal Pradesh India','',NULL,0,38000,'Included in Prices','Topay Basis','100% Before Dispatch','GST will be charged Extra 18%','2019-09-14 14:41:14','2019-09-14 09:11:14','admin',NULL,1);
+/*!40000 ALTER TABLE `quotation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `quotation_product`
+--
+
+DROP TABLE IF EXISTS `quotation_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `quotation_product` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `QUOTATION_ID` int(11) NOT NULL,
+  `PRODUCT_ID` int(11) NOT NULL,
+  `PRODUCT_NAME` varchar(50) NOT NULL,
+  `UOM` varchar(20) NOT NULL,
+  `QUANTITY` int(11) NOT NULL,
+  `RATE` int(11) NOT NULL,
+  `SGST` float NOT NULL,
+  `CGST` float NOT NULL,
+  `IGST` float NOT NULL,
+  `BASIC_PRICE` float NOT NULL,
+  `PRICE` float NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `MATERIAL_ID` (`PRODUCT_ID`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `quotation_product`
+--
+
+LOCK TABLES `quotation_product` WRITE;
+/*!40000 ALTER TABLE `quotation_product` DISABLE KEYS */;
+INSERT INTO `quotation_product` VALUES (1,1,0,'Duct Heater 7.5 Kw (600x300x200) / Electrical','',1,18390,0,0,0,0,18390),(2,2,0,'Duct Heater 137 Kw (2000x1000x250)','',1,151390,0,0,0,0,151390),(3,2,0,'Duct Heater 73 kw (1800x900x250)','',1,90390,0,0,0,0,90390),(4,2,0,'Duct Heater 132 Kw (2000x1000x250)','',1,151390,0,0,0,0,151390),(5,2,0,'Duct Heater 114 Kw (2000x1000x250)','',1,133390,0,0,0,0,133390),(6,2,0,'Duct Heater 139 Kw (2000x1000x250)','',1,151390,0,0,0,0,151390),(7,2,0,'Duct Heater 83 Kw (1900x950x200)','',1,96390,0,0,0,0,96390),(8,2,0,'Duct Heater 75.0 Kw (1800x900x200)','',1,90390,0,0,0,0,90390),(9,2,0,'Duct Heater 4.0 Kw (500x250x200)','',1,12390,0,0,0,0,12390),(10,2,0,'Duct Heater 70 Kw (1800x900x200)','',1,90390,0,0,0,0,90390),(11,2,0,'Duct Heater 46.0 Kw (1600x800x200)','',1,51390,0,0,0,0,51390),(12,3,0,'Finned Strip Heater 2.0 Kw / Length 29\" ','',10,600,0,0,0,0,6000),(13,4,0,'Duct Heaters / BMS / 36.0 Kw (1300x850x200)','',1,84390,0,0,0,0,84390),(14,4,0,'Duct Heater / BMS / 6.0 Kw (800x600x200)','',1,57390,0,0,0,0,57390),(15,5,0,'Duct Heater / Electrical / 4.0 Kw (500x250x200)','',4,15390,0,0,0,0,61560),(16,6,0,'Duct Heater 36.0 Kw (600x400x550)','',4,46340,0,0,0,0,185360),(17,7,0,'Duct Heater / BMS / 34 Kw (1500x750x200)','',1,81390,0,0,0,0,81390),(18,8,0,'M type 400 watt for LHB','',200,190,0,0,0,0,38000);
+/*!40000 ALTER TABLE `quotation_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `permissions` varchar(1000) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'admin','','0000-00-00 00:00:00','2019-08-26 13:02:33'),(2,'store','','0000-00-00 00:00:00','2019-08-26 13:02:33'),(3,'purchase','','0000-00-00 00:00:00','2019-08-26 13:02:33'),(4,'quality','','0000-00-00 00:00:00','2019-08-26 13:02:33'),(5,'production','','0000-00-00 00:00:00','2019-08-26 13:02:33'),(6,'gate','','0000-00-00 00:00:00','2019-08-26 13:02:33'),(7,'sales','','0000-00-00 00:00:00','2019-08-26 13:02:33');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_frontend_user`
+--
+
+DROP TABLE IF EXISTS `t_frontend_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_frontend_user` (
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MSISDN` bigint(20) NOT NULL,
+  `NAME` varchar(1000) DEFAULT NULL,
+  `DOB` varchar(1000) DEFAULT NULL,
+  `PROFILE_IMAGE` varchar(1000) DEFAULT NULL,
+  `RELIGION_ID` int(11) NOT NULL,
+  `LANGUAGE_ID` varchar(1000) DEFAULT NULL,
+  `OPERATOR_ID` int(1) NOT NULL DEFAULT '1',
+  `SITE_ID` varchar(1000) DEFAULT NULL,
+  `CREATED_ON` datetime NOT NULL,
+  `MODYFIED_ON` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`USER_ID`),
+  KEY `MSISDN` (`MSISDN`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_frontend_user`
+--
+
+LOCK TABLES `t_frontend_user` WRITE;
+/*!40000 ALTER TABLE `t_frontend_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_frontend_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_text`
+--
+
+DROP TABLE IF EXISTS `t_text`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_text` (
+  `TEXT_ID` int(11) NOT NULL,
+  `TEXT` varchar(500) NOT NULL,
+  `TEXT_TYPE` varchar(100) NOT NULL,
+  `OPERATOR` varchar(10) DEFAULT NULL,
+  `CREATED_ON` varchar(100) DEFAULT NULL,
+  `MODYFIED_ON` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`TEXT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_text`
+--
+
+LOCK TABLES `t_text` WRITE;
+/*!40000 ALTER TABLE `t_text` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_text` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) NOT NULL,
+  `middle_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(500) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `mobile` bigint(20) NOT NULL,
+  `gender` varchar(10) DEFAULT 'male',
+  `dob` date DEFAULT NULL,
+  `acc_allowed` varchar(100) NOT NULL,
+  `ip` varchar(100) NOT NULL,
+  `auth_for_site` tinyint(4) NOT NULL,
+  `role` tinyint(4) NOT NULL,
+  `permissions` varchar(200) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_date` datetime NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (23,'admin',NULL,'','admin','52c2b42996ef3a1aab3e9515185f6d35',0,'male',NULL,'','',0,1,'',1,'0000-00-00 00:00:00','2019-08-26 23:55:35',1),(24,'store',NULL,'','store','be2c600cb3eb4350f5145a3f5b6e2277',0,'male',NULL,'','',0,2,'',1,'0000-00-00 00:00:00','2019-08-26 23:55:10',1),(25,'purchase',NULL,'','purchase','9d354446ef7a30635f7b472072262b19',0,'male',NULL,'','',0,3,'',1,'0000-00-00 00:00:00','2019-08-26 23:56:02',1),(26,'quality',NULL,'','quality','58ec94e8d3c4cbed02e3f1e12be63c60',0,'male',NULL,'','',0,4,'',1,'0000-00-00 00:00:00','2019-08-26 23:56:28',1),(27,'production',NULL,'','production','d2a99f6ae5e25688fc9899cd45ac4663',0,'male',NULL,'','',0,5,'',1,'0000-00-00 00:00:00','2019-08-26 23:56:48',1),(28,'gate',NULL,'','gate','a3f522bfa22628b96e6443a7b4c65467',0,'male',NULL,'','',0,6,'',1,'0000-00-00 00:00:00','2019-08-26 23:58:23',1),(29,'sales',NULL,'','sales','2d6cdefca4bf16743b89ca547ca7838f',0,'male',NULL,'','',0,7,'',1,'0000-00-00 00:00:00','2019-08-26 23:58:45',1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vendor`
+--
+
+DROP TABLE IF EXISTS `vendor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vendor` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(20) NOT NULL,
+  `MATERIAL_GROUP_ID` int(11) NOT NULL,
+  `MATERIAL_GROUP_NAME` varchar(20) NOT NULL,
+  `CATEGORY` varchar(20) DEFAULT NULL,
+  `CODE` varchar(20) NOT NULL,
+  `OPENING_AMOUNT` decimal(10,0) NOT NULL,
+  `CONTACT_PERSON` varchar(100) NOT NULL,
+  `MOBILE` varchar(20) NOT NULL,
+  `EMAIL_ID` varchar(50) NOT NULL,
+  `ADDRESS_1` varchar(200) NOT NULL,
+  `ADDRESS_2` varchar(200) NOT NULL,
+  `CITY` varchar(20) NOT NULL,
+  `STATE` varchar(20) NOT NULL,
+  `COUNTRY` varchar(20) NOT NULL,
+  `PIN_CODE` int(6) NOT NULL,
+  `WEBSITE` varchar(50) NOT NULL,
+  `PHONE` varchar(20) NOT NULL,
+  `FAX` varchar(50) NOT NULL,
+  `PAN` varchar(20) NOT NULL,
+  `GSTIN` varchar(20) NOT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
+  ` MODYFIED_ON` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `MODIFIED_BY` varchar(100) DEFAULT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `PACK_ID` (`CATEGORY`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vendor`
+--
+
+LOCK TABLES `vendor` WRITE;
+/*!40000 ALTER TABLE `vendor` DISABLE KEYS */;
+INSERT INTO `vendor` VALUES (1,'vendor name',0,'','CREDITOR','',123,'contact person','999999999','vendor@test.com','pritampura','new delhi','delhi','delhi','India',100098,'','','','AKOFSFEF343','gstin','2019-07-11 13:48:04','2019-07-11 06:18:04','admin',NULL,1),(2,'Sunil Enterprises',0,'',NULL,'',0,'Sunil Nanda ','9810084748','SUNILNANDA@GMAIL.COM','A-582/3 Shastri Nagar, NEW DELHI, 110052','A-582/3 Shastri Nagar, NEW DELHI, 110052','New Delhi','New Delhi','India',110005,'','','','07AAIPN8080F1ZI','','2019-08-27 17:33:04','2019-08-30 08:22:17','purchase','admin',1),(3,'ABCD Ltd.',0,'',NULL,'',100,'Dheeraj Goel','7838884633','dheerajgoel44@gmail.com','Ghaziabad','B-2','Ghaziabad','Uttar Pradesh','India',201012,'','','','AKOPG5690Q','GSTIN0575','2019-08-28 12:11:01','2019-08-28 06:41:01','admin',NULL,1),(4,'jlc electromet',0,'',NULL,'',0,'vinond','9810084748','yogender.daspass@gmail.com','hnjuhh 548','A-582/3 Shastri Nagar, NEW DELHI, 110052','New Delhi','New Delhi','India',110005,'','','',';lkjukjghjugu','584654558','2019-08-28 12:15:38','2019-08-28 06:45:38','purchase',NULL,1),(5,'JLC Elctronice',0,'',NULL,'',0,'Vinod Kumar','9718998013','vinod.kumar@gmail.com','Jaipur','Jaipur','Jaipur','Rajasthan','India',110490,'www.jaipur.com','','','AKOPG8909F','03AKOPG8909F2ZF','2019-09-02 13:44:29','2019-09-02 08:14:29','admin',NULL,1),(6,'UNIVERSAL SHEET TRAD',0,'',NULL,'',0,'GUPTA','9810921895','UNIVERSAL@GMAIL.COM','K-31/1, GALI NO - 4, ANAND PARBAT INDL. AREA, ','K-31/1, GALI NO - 4, ANAND PARBAT INDL. AREA,  ','','','India',110005,'','','','','07AADHA4066R1ZY','2019-09-07 10:03:28','2019-09-07 04:34:27','purchase','purchase',1),(7,'D.C KRISHNA & CO',0,'',NULL,'',0,'PAPPU SHARMA','9312215609','dckrishna1943@gmail.com','156-A, BHAGIRATHI PLACE , CHADNI CHAWK , DELHI ','156-A, BHAGIRATHI PLACE , CHADNI CHAWK , DELHI ','','','India',110006,'','','','','07AAAFD1800D1ZB','2019-09-07 12:51:43','2019-09-07 07:21:43','purchase',NULL,1);
+/*!40000 ALTER TABLE `vendor` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-09-17 11:30:55
